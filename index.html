@@ -3,55 +3,41 @@
 	<head>
 		<title>My Super Cool Webthing!</title>
 		<style>
-			body {background: #f0f8ff; font-family: Arial;}
-			h1 {color: #0d6efd; text-align: center; font-family: Courier}
-			ul, ol {list-style-position: inside}
-			p{font-size:1.2em; text-align:center;}
+			p{color: blue; font-size: 10px;}
+			h1{color: darkred;}
+			button{font-size: 20px;}
+			p .important{
+				color: red;
+				font-size: 20px;
+			}
+			
+			.safe{
+				color: green;
+			}
+			.large{font-size: 50px;}
+			#page-title{color: rebeccapurple; font-size: 70px;}
 		</style>
 	</head>
 	
 	<body>
-		<h1>This is the largest heading!</h1>
-		<h6>This is the smallest heading!</h6>
-		<p>Hello World!</p>
-		
-		<p> Visit the 
-		<a href="https://hollowknightsilksong.com">
-			Silksong page!</a> </p>
-		<p> This is
-		<a href="./sparta.html"> SPARTA!!!</a></p>
-		
-		<p> HERE IS A 
-		<a href="./silly.txt"> TEXT FILE!!!</a></p>
-		<p>
-		<img
-  			src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-  			title="Charizard sprite" />
-		</p>
-		
-		<h3>Grocery List</h3>
-		<ul>
-			<li>Milk</li>
-			<li>Cheese</li>
-			<li>Crackers</li>
-			<li>Sausage</li>
-			<li>Beer</li>
-			<li>Lite Beer</li>
-			<li>BM Mix</li>
-		</ul>
-		
-		<h3>Pokedex</h3>
-		<ol type="I">
-			<li>Bulbasaur</li>
-			<li>Ivysaur</li>
-			<li>Venusaur</li>
-			<li>Charmander</li>
-			<li>Charmeleon</li>
-			<li>Charizard</li>
-			<li>Squirtle</li>
-			<li>Wortortle</li>
-			<li>Blastoise</li>
-		</ol>
-		
+	<h1 id="page-title">Welcome to my new webpage!!!</h1>
+
+	<h2 class="important">Important heading</p>	
+	<p class="important">Important paragraph</p>
+	
+	<p>This is my first paragraph!</p>
+	<p class="safe">This is my second paragraph!</p>
+	<p class="important">THIS IS IMPORTANT!</p>
+	<p class="important large">THIS IS VERY IMPORTANT!!</p>
+	
+	<p>
+		Is this important?
+		<span class="important">
+			This is important!
+		</span>
+	</p>
+	
+	<button class = "important">Delete Everything!</button>
+	<button class = "safe">Save</button>		
 	</body>
 </html>
