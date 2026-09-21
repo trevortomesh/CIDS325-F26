@@ -1,0 +1,12 @@
+body{
+	font-family: Arial, sans-serif;
+	background-color: whitesmoke;
+}
+
+h1{
+	font-size: 36px;
+}
+
+.important{
+	font-weight: bold;
+}

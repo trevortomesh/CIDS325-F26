@@ -1,0 +1,152 @@
+/* ==================================
+   WINDOWS XP-INSPIRED DUCK WEBSITE
+   ================================== */
+
+body {
+    background-color: #3a6ea5;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 14px;
+
+    margin: 0;
+    padding: 30px;
+}
+
+
+/* Main Windows-style container */
+main {
+    background-color: #ece9d8;
+
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+
+    border: 3px solid #0054e3;
+
+    box-shadow: 5px 5px 10px #333333;
+}
+
+
+/* XP blue title bar */
+header {
+    background-color: #0058e6;
+    color: white;
+
+    max-width: 800px;
+    margin: auto;
+    padding: 8px 20px;
+
+    border: 3px solid #0054e3;
+}
+
+
+h1 {
+    margin: 0;
+
+    font-size: 22px;
+    color: white;
+
+    text-shadow: 1px 1px #003399;
+}
+
+
+.subtitle {
+    color: white;
+    margin: 4px 0;
+}
+
+
+/* Section headings */
+h2 {
+    color: #003399;
+
+    border-bottom: 2px solid #aaaaaa;
+
+    padding-bottom: 4px;
+}
+
+
+/* Normal paragraphs */
+p {
+    color: #000000;
+    line-height: 1.5;
+}
+
+
+/* Links */
+a {
+    color: #0000ee;
+}
+
+a:hover {
+    color: #ff0000;
+}
+
+
+/* Duck information panel */
+.duck-box {
+    background-color: #ffffff;
+
+    border: 2px inset #cccccc;
+
+    padding: 15px;
+    margin: 20px 0;
+}
+
+
+/* Important message */
+#important-duck-fact {
+    background-color: #ffffcc;
+
+    border: 1px solid #888888;
+
+    padding: 15px;
+    margin: 20px 0;
+}
+
+
+/* Classic Windows-style button */
+button {
+    background-color: #ece9d8;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #555555;
+    border-bottom: 2px solid #555555;
+
+    padding: 6px 18px;
+
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+
+button:hover {
+    background-color: #d6e8ff;
+}
+
+
+button:active {
+    border-top: 2px solid #555555;
+    border-left: 2px solid #555555;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* Footer */
+footer {
+    background-color: #245edb;
+    color: white;
+
+    max-width: 800px;
+
+    margin: auto;
+    padding: 8px 20px;
+
+    text-align: center;
+}
+
+
+footer p {
+    color: white;
+    margin: 0;
+}

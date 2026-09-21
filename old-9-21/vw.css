@@ -1,0 +1,94 @@
+/* =========================
+   90s VAPORWAVE THEME
+   ========================= */
+
+/* General page styling */
+body {
+    background-color: #18002e;
+    color: #00ffff;
+
+    font-family: "Courier New", monospace;
+
+    margin: 0;
+    padding: 30px;
+}
+
+/* Headings */
+h1 {
+    color: #ff00ff;
+    text-align: center;
+
+    font-size: 3em;
+    text-transform: uppercase;
+
+    text-shadow:
+        3px 3px #00ffff,
+        6px 6px #6600cc;
+}
+
+h2 {
+    color: #00ffff;
+    border-bottom: 3px solid #ff00ff;
+}
+
+/* Paragraphs */
+p {
+    color: #eeeeff;
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: #ff66cc;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #00ffff;
+    background-color: #ff00ff;
+}
+
+/* Buttons */
+button {
+    background-color: #ff00ff;
+    color: white;
+
+    border: 3px solid #00ffff;
+    padding: 10px 20px;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    box-shadow: 5px 5px #6600cc;
+}
+
+button:hover {
+    background-color: #00ffff;
+    color: #18002e;
+    cursor: pointer;
+}
+
+/* A reusable vaporwave box */
+.vapor-box {
+    background-color: #2d0052;
+
+    border: 3px solid #ff00ff;
+    padding: 20px;
+    margin: 20px 0;
+
+    box-shadow:
+        8px 8px #00ffff,
+        12px 12px #6600cc;
+}
+
+/* Optional retro grid-like footer */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+
+    text-align: center;
+    color: #ff66cc;
+
+    border-top: 3px solid #00ffff;
+}
