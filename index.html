@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DOM Example</title>
+        <title>Dessert Smasher</title>
+        <style>
+            #cookie {
+                transition: transform 0.1s
+            }
+            
+            #cookie.clicked {
+                transform: scale(0.9)
+            }
+
+
+        </style>
     </head>
     <body>
-        <h1 id="header">Hello World!</h1>
+        <h1>Dessert Smasher</h1>
+        <h2 id="score">Cookies: 0</h2>
+
+        <img
+            id="cookie"
+            src="img/cookie.jpg"
+            alt="Cookie"
+            width="200"
+        >
+
+        <script src="script.js"></script>
+
+        <!-- <h1 id="header">Hello World!</h1>
         <p>This is a paragraph!</p>
         <button id="myButton">Click Me!</button>
         <script>
@@ -21,6 +44,6 @@
             console.log(myButton);
             //console.log(header);
             header.innerHTML = 'Yo Earth!';
-        </script>
+        </script> -->
     </body>
 </html>
