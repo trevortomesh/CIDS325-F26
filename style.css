@@ -1,0 +1,7 @@
+        #cookie {
+                transition: transform 0.1s
+            }
+            
+            #cookie.clicked {
+                transform: scale(0.9)
+            }
