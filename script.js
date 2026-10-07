@@ -3,11 +3,16 @@ let cookies = 0;
 let cookiesPerClick = 1;
 let upgradeCost = 10;
 
+let grandmas = 0;
+let grandmaCost = 50;
+
 // Get elements from DOM
 const cookie = document.getElementById("cookie");
 const score = document.getElementById("score");
 const perClick = document.getElementById("perClick");
 const upgradeButton = document.getElementById("upgradeButton");
+const grandmaCount = document.getElementById("grandmaCount");
+const grandmaButton = document.getElementById("grandmaButton");
 
 perClick.textContent = "Cookies per click: " + cookiesPerClick;
 
@@ -20,43 +25,62 @@ function updateDisplay(){
     perClick.textContent = "Cookies per click: " + cookiesPerClick;
     upgradeButton.textContent = 
         "Buy Upgrade (" + upgradeCost + " Cookies)";
+    grandmaCount.textContent = 
+        "Grandmas: " + grandmas;
+    grandmaButton.textContent = 
+        "Buy Grandma (" + grandmaCost + "Cookies)";
 }
 
-upgradeButton.addEventListener("click", function(){
+function clickCookie(){
+    cookies = cookies + cookiesPerClick;
+    updateDisplay();
+    cookieAnim();
+}
 
-    if(cookies >= upgradeCost){
+function cookieAnim(){
+    cookie.classList.add("clicked")
+    
+    setTimeout(function(){
+        cookie.classList.remove("clicked");
+    }, 100);
+}
+
+function buyUpgrade(){
+        if(cookies >= upgradeCost){
         cookies = cookies - upgradeCost;
         cookiesPerClick++;
         upgradeCost = upgradeCost * 2;
         updateDisplay();
     }
-});
+}
 
-let time = 1000;
-setInterval(function(){
-        // Do something
-        console.log("Grandma Time!");
-}, time);
+function buyGrandma(){
+    if(cookies >= grandmaCost){
+        cookies = cookies - grandmaCost;
+        grandmas++;
+        updateDisplay();
+    }
+}
 
-// Listen for a click on the cookie
-cookie.addEventListener("click", function(){
-    // Increase the cookie count
+// AUTOMATIC COOKIE PRODUCTION
 
-    sayHello();
-    cookies += cookiesPerClick;
-
-    // update DOM header
+function produceCookies(){
+    cookies = cookies + grandmas;
+    if(grandmas > 0){
+        cookieAnim();
+    }
     updateDisplay();
-
-    cookie.classList.add("clicked")
-    //cookie.style.width = "180px";
-    // const message = document.createElement("p");
-    // message.textContent = "+1 Cookie!";
-    // document.body.appendChild(message);
+}
 
 
-    setTimeout(function(){
-        cookie.classList.remove("clicked");
-    }, 100);
+//EVENT LISTENERS
 
-});
+upgradeButton.addEventListener("click", buyUpgrade);
+cookie.addEventListener("click", clickCookie);
+grandmaButton.addEventListener("click", buyGrandma);
+
+//RUN EVERY SECOND
+setInterval(produceCookies, 1000);
+
+//INITIAL DISPLAY
+updateDisplay();
