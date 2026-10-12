@@ -41,6 +41,7 @@ const farmCount = document.getElementById("farmCount");
 const farmButton = document.getElementById("farmButton");
 const factoryCount = document.getElementById("factoryCount");
 const factoryButton = document.getElementById("factoryButton");
+const clicksPerSecond = document.getElementById("clicksPerSecond");
 
 perClick.textContent = "Cookies per click: " + cookiesPerClick;
 
@@ -63,6 +64,20 @@ function updateDisplay(){
 
     factoryCount.textContent = "Factory: " + factory.count;
     factoryButton.textContent = "Buy Factory (" + factory.cost + " Cookies)";
+
+
+
+    clicksPerSecond.textContent = 
+    "Automatic clicks per second: " + cps();
+
+}
+
+function cps(){
+    let sum = 0;
+    for(let producer of producers){
+        sum += producer.count * producer.clicksPerSecond
+    }
+    return sum
 }
 
 function clickCookie(){
