@@ -88,14 +88,24 @@ function buyUpgrade(){
     }
 }
 
-function buyGrandma(){
-    if(cookies >= grandma.cost){
-        cookies = cookies - grandma.cost;
-        grandma.count++;
-        grandma.cost = grandma.cost * 2;
+// function buyGrandma(){
+//     if(cookies >= grandma.cost){
+//         cookies = cookies - grandma.cost;
+//         grandma.count++;
+//         grandma.cost = grandma.cost * 2;
+//         updateDisplay();
+//     }
+// }
+
+function buyProducer(producer){
+    if(cookies >= producer.cost){
+        cookies = cookies - producer.cost;
+        producer.count++;
+        producer.cost = producer.cost * 2;
         updateDisplay();
+        }
     }
-}
+
 
 // AUTOMATIC COOKIE PRODUCTION
 
@@ -112,7 +122,19 @@ function produceCookies(){
 
 upgradeButton.addEventListener("click", buyUpgrade);
 cookie.addEventListener("click", clickCookie);
-grandmaButton.addEventListener("click", buyGrandma);
+
+grandmaButton.addEventListener("click", function(){
+    buyProducer(grandma);
+});
+
+factoryButton.addEventListener("click", function(){
+    buyProducer(factory);
+});
+
+farmButton.addEventListener("click", function(){
+    buyProducer(farm);
+});
+
 
 //RUN EVERY SECOND
 setInterval(produceCookies, 1000);
