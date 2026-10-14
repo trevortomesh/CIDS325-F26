@@ -3,29 +3,24 @@ let cookies = 0;
 let cookiesPerClick = 1;
 let upgradeCost = 10;
 
-let grandmas = 0;
-let grandmaCost = 50;
+class Producer{
+    constructor(name, count, cost, clicksPerSecond){
+        this.name = name;
+        this.count = count;
+        this.cost = cost;
+        this.clicksPerSecond = clicksPerSecond;
+    }
 
-let grandma = {
-    name: "Grandma",
-    count: 0,
-    cost: 50,
-    clicksPerSecond: 1
-};
+    totalClicksPerSecond(){
+        return this.count * this.clicksPerSecond;
+    }
 
-let farm = {
-    name: "Farm",
-    count: 0,
-    cost: 200,
-    clicksPerSecond: 5
-};
+}
 
-let factory = {
-    name: "Factory",
-    count: 0,
-    cost: 1000,
-    clicksPerSecond: 20
-};
+let grandma = new Producer("Grandma", 0, 50, 1);
+let farm = new Producer("Farm", 0, 200, 5);
+let factory = new Producer("Factory", 0, 1000, 20);
+
 
 let producers = [grandma, farm, factory];
 
@@ -43,7 +38,6 @@ const factoryCount = document.getElementById("factoryCount");
 const factoryButton = document.getElementById("factoryButton");
 const clicksPerSecond = document.getElementById("clicksPerSecond");
 
-perClick.textContent = "Cookies per click: " + cookiesPerClick;
 
 function sayHello(){
     console.log("Hello!");
@@ -102,15 +96,6 @@ function buyUpgrade(){
         updateDisplay();
     }
 }
-
-// function buyGrandma(){
-//     if(cookies >= grandma.cost){
-//         cookies = cookies - grandma.cost;
-//         grandma.count++;
-//         grandma.cost = grandma.cost * 2;
-//         updateDisplay();
-//     }
-// }
 
 function buyProducer(producer){
     if(cookies >= producer.cost){
