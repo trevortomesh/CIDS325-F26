@@ -38,6 +38,17 @@ const factoryCount = document.getElementById("factoryCount");
 const factoryButton = document.getElementById("factoryButton");
 const clicksPerSecond = document.getElementById("clicksPerSecond");
 
+grandma.label = "Grandmas";
+grandma.countElement = grandmaCount;
+grandma.buttonElement = grandmaButton;
+
+farm.label = "Farms";
+farm.countElement = farmCount;
+farm.buttonElement = farmButton;
+
+factory.label = "Factories";
+factory.countElement = factoryCount;
+factory.buttonElement = factoryButton;
 
 function sayHello(){
     console.log("Hello!");
@@ -48,19 +59,11 @@ function updateDisplay(){
     perClick.textContent = "Cookies per click: " + cookiesPerClick;
     upgradeButton.textContent = 
         "Buy Upgrade (" + upgradeCost + " Cookies)";
-    grandmaCount.textContent = 
-        "Grandmas: " + grandma.count;
-    grandmaButton.textContent = 
-        "Buy Grandma (" + grandma.cost + " Cookies)";
 
-    farmCount.textContent = "Farms: " + farm.count;
-    farmButton.textContent = "Buy Farm (" + farm.cost + " Cookies)";
-
-    factoryCount.textContent = "Factory: " + factory.count;
-    factoryButton.textContent = "Buy Factory (" + factory.cost + " Cookies)";
-
-
-
+    for(let producer of producers){
+        producer.countElement.textContent = producer.label + ": " + producer.count;
+        producer.buttonElement.textContent = "Buy "+producer.name+" ("+producer.cost+" Cookies)";
+    }    
     clicksPerSecond.textContent = 
     "Automatic clicks per second: " + cps();
 
@@ -111,9 +114,13 @@ function buyProducer(producer){
 
 function produceCookies(){
     for(let producer of producers){
-        for(let j = 0; j < producer.count * producer.clicksPerSecond; j++){
+        let clicks = producer.totalClicksPerSecond();
+        for(let j =0 ; j < clicks; j++){
             clickCookie();
         }
+        // for(let j = 0; j < producer.count * producer.clicksPerSecond; j++){
+        //     clickCookie();
+        // }
     }
 }
 
