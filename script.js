@@ -1,7 +1,14 @@
 // Keep track of how many cookies we have
-let cookies = 0;
-let cookiesPerClick = 1;
-let upgradeCost = 10;
+
+// let cookies = 0;
+// let cookiesPerClick = 1;
+// let upgradeCost = 10;
+
+let game = {
+    cookies: 0,
+    cookiesPerClick: 1,
+    upgradeCost: 10
+};
 
 class Producer{
     constructor(name, count, cost, clicksPerSecond){
@@ -55,10 +62,10 @@ function sayHello(){
 }
 
 function updateDisplay(){
-    score.textContent = "Cookies: " + cookies;
-    perClick.textContent = "Cookies per click: " + cookiesPerClick;
+    score.textContent = "Cookies: " + game.cookies;
+    perClick.textContent = "Cookies per click: " + game.cookiesPerClick;
     upgradeButton.textContent = 
-        "Buy Upgrade (" + upgradeCost + " Cookies)";
+        "Buy Upgrade (" + game.upgradeCost + " Cookies)";
 
     for(let producer of producers){
         producer.countElement.textContent = producer.label + ": " + producer.count;
@@ -72,13 +79,13 @@ function updateDisplay(){
 function cps(){
     let sum = 0;
     for(let producer of producers){
-        sum += producer.count * producer.clicksPerSecond
+        sum += producer.totalClicksPerSecond();
     }
     return sum
 }
 
 function clickCookie(){
-    cookies = cookies + cookiesPerClick;
+    game.cookies = game.cookies + game.cookiesPerClick;
     updateDisplay();
     cookieAnim();
 }
@@ -92,17 +99,17 @@ function cookieAnim(){
 }
 
 function buyUpgrade(){
-        if(cookies >= upgradeCost){
-        cookies = cookies - upgradeCost;
-        cookiesPerClick++;
-        upgradeCost = upgradeCost * 2;
+        if(game.cookies >= game.upgradeCost){
+        game.cookies = game.cookies - game.upgradeCost;
+        game.cookiesPerClick++;
+        game.upgradeCost = game.upgradeCost * 2;
         updateDisplay();
     }
 }
 
 function buyProducer(producer){
-    if(cookies >= producer.cost){
-        cookies = cookies - producer.cost;
+    if(game.cookies >= producer.cost){
+        game.cookies = game.cookies - producer.cost;
         producer.count++;
         producer.cost = producer.cost * 2;
         updateDisplay();
