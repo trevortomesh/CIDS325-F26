@@ -149,6 +149,27 @@ farmButton.addEventListener("click", function(){
     buyProducer(farm);
 });
 
+function buildSaveData(){
+    let producerData = [];
+    for(let producer of producers){
+        let oneProducer = {
+            name: producer.name,
+            count: producer.count,
+            cost: producer.cost,
+            clicksPerSecond: producer.clicksPerSecond
+        };
+        producerData.push(oneProducer);
+    }
+
+    let saveData = {
+        cookies: game.cookies,
+        cookiesPerClick: game.cookiesPerClick,
+        upgradeCost: game.upgradeCost,
+        producers: producerData
+    };
+    return saveData;
+}
+
 
 //RUN EVERY SECOND
 setInterval(produceCookies, 1000);
