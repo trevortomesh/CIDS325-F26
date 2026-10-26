@@ -1,0 +1,25 @@
+const student = {
+    studentId: 12345,
+    firstName: "Jordan",
+    lastName: "Lee",
+    email: "jordan.lee@example.edu",
+    isEnrolled: true,
+    major: "Computer Information Systems",
+    courses: [
+        {
+            courseCode: "CIDS325",
+            courseName: "Web Development",
+            credits: 3
+        },
+        {
+            courseCode: "MATH156",
+            courseName: "Calculus I",
+            credits: 4
+        }
+    ],
+    contact: {
+        phone: "555-0123",
+        preferredContactMethod: "email"
+    },
+    graduationYear: null
+};

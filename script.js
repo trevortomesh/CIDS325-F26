@@ -44,6 +44,9 @@ const farmButton = document.getElementById("farmButton");
 const factoryCount = document.getElementById("factoryCount");
 const factoryButton = document.getElementById("factoryButton");
 const clicksPerSecond = document.getElementById("clicksPerSecond");
+const saveButton = document.getElementById("saveButton");
+const loadButton = document.getElementById("loadButton");
+const saveText = document.getElementById("saveText");
 
 grandma.label = "Grandmas";
 grandma.countElement = grandmaCount;
