@@ -152,6 +152,9 @@ farmButton.addEventListener("click", function(){
     buyProducer(farm);
 });
 
+saveButton.addEventListener("click", saveGame);
+loadButton.addEventListener("click", loadGame);
+
 function buildSaveData(){
     let producerData = [];
     for(let producer of producers){
@@ -171,6 +174,27 @@ function buildSaveData(){
         producers: producerData
     };
     return saveData;
+}
+
+function saveGame(){
+    let saveData = buildSaveData();
+    let saveString = JSON.stringify(saveData,null,2);
+    saveText.value = saveString;
+}
+
+function loadGame(){
+    let saveData = JSON.parse(saveText.value);
+    game.cookies = saveData.cookies;
+    game.cookiesPerClick = saveData.cookiesPerClick;
+    game.upgradeCost = saveData.upgradeCost;
+
+    for(let i = 0; i < producers.length; i++){
+        producers[i].count = saveData.producers[i].count;
+        producers[i].cost = saveData.producers[i].cost;
+    }
+
+    updateDisplay();
+
 }
 
 
