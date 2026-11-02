@@ -47,6 +47,7 @@ const clicksPerSecond = document.getElementById("clicksPerSecond");
 const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const saveText = document.getElementById("saveText");
+const saveStatus = document.getElementById("saveStatus");
 
 grandma.label = "Grandmas";
 grandma.countElement = grandmaCount;
@@ -183,17 +184,30 @@ function saveGame(){
 }
 
 function loadGame(){
-    let saveData = JSON.parse(saveText.value);
+    let saveData; 
+    
+    try{
+        saveData = JSON.parse(saveText.value);
+    } catch(error){
+        saveStatus.textContent = "That save could not be read. Check the text and try again.";
+        return;
+    }
+    
     game.cookies = saveData.cookies;
     game.cookiesPerClick = saveData.cookiesPerClick;
     game.upgradeCost = saveData.upgradeCost;
 
-    for(let i = 0; i < producers.length; i++){
-        producers[i].count = saveData.producers[i].count;
-        producers[i].cost = saveData.producers[i].cost;
+    for(let savedProducer of saveData.producers){
+        for(let producer of producers){
+            if(producer.name === savedProducer.name){
+                producer.count = savedProducer.count;
+                producer.cost = savedProducer.cost;
+            }
+        }
     }
 
     updateDisplay();
+    saveStatus.textContent = "Game loaded.";
 
 }
 
