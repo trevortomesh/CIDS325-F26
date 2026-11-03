@@ -189,7 +189,8 @@ function loadGame(){
     try{
         saveData = JSON.parse(saveText.value);
     } catch(error){
-        saveStatus.textContent = "That save could not be read. Check the text and try again.";
+        showStatus("That save could not be read. Check the text and try again.", false);
+        console.log(error);
         return;
     }
     
@@ -207,7 +208,25 @@ function loadGame(){
     }
 
     updateDisplay();
-    saveStatus.textContent = "Game loaded.";
+    showStatus("Game loaded.", true);
+
+}
+
+function showStatus(message, isOk){
+    if(isOk){
+        saveStatus.textContent = "✓ " + message;
+    }else{
+        saveStatus.textContent = "✗ " + message;
+    }
+
+    saveStatus.classList.remove("status-ok");
+    saveStatus.classList.remove("status-error");
+
+    if(isOk){
+        saveStatus.classList.add("status-ok");
+    }else{
+        saveStatus.classList.add("status-error");
+    }
 
 }
 

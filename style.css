@@ -1,7 +1,24 @@
-        #cookie {
-                transition: transform 0.1s
-            }
+#cookie {
+    transition: transform 0.1s
+}
             
-            #cookie.clicked {
-                transform: scale(0.9)
-            }
+#cookie.clicked {
+    transform: scale(0.9)
+}
+
+#saveStatus{
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    max-width: 600px;
+}
+            
+.status-ok{
+    background-color:#d4edda;
+    color: #155724;
+}
+
+.status-error{
+    background-color: #f8d7da;
+    color: #721c24
+}
