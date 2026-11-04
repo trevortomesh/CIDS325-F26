@@ -230,6 +230,67 @@ function showStatus(message, isOk){
 
 }
 
+function verifySaveData(saveData){
+    if(saveData === null || typeof saveData !== "object"){
+        return "Save data is not an object!";
+    }
+
+    if(typeof saveData.cookies !== "number"){
+        return "'cookies' should be a number, but the save has: " + typeof saveData.cookies + ": " + saveData.cookies;
+    }
+
+    if(saveData.cookies < 0){
+        return "'cookies' cannot be negative, but the save has: " + saveData.cookies;
+    }
+
+    if(typeof saveData.cookiesPerClick !== "number" || saveData.cookiesPerClick < 1){
+        return "'cookiesPerClick' should be a number that is 1 or more, but the save has a "
+            + typeof saveData.cookiesPerClick + " with a value of: " + saveData.cookiesPerClick;
+    }
+
+    if(typeof saveData.upgradeCost !== "number" || saveData.upgradeCost < 1){
+        return "'upgradeCost' should be a number that is 1 or more, but the save has a "  
+            + typeof saveData.upgradeCost + " with a value of: " + saveData.upgradeCost;
+    }
+
+    if(Array.isArray(saveData.producers) === false){
+        return "'producers' should be a list of producers, but the save is " + typeof saveData.producers; 
+    }
+
+    for(let savedProducer of saveData.producers){
+        if(typeof savedProducer.name !== "string"){
+            return "A producer in the save is missing its 'name'.";
+        }
+
+        if(typeof savedProducer.count !== "number" || savedProducer.count < 0){
+            return savedProducer.name + 
+            ": 'count' should be a number that is 0 or more, but the save has: " 
+            + savedProducer.count;
+        }
+
+        if(typeof savedProducer.cost !== "number" || savedProducer.cost <= 0){
+            return savedProducer.name + 
+            ": 'cost' should be a number that is more than 0, but the save has: "
+            + savedProducer.cost;
+        } 
+
+        let found = false;
+
+        for(let producer of producers){
+            if(producer.name === savedProducer.name){
+                found = true;
+            }
+        }
+        if(found === false){
+            return "Unknown producer in the save: '" + savedProducer.name + 
+            "'. This game has no producer with that name.";
+        }
+
+    }
+    return "";
+
+}
+
 
 //RUN EVERY SECOND
 setInterval(produceCookies, 1000);
