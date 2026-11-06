@@ -48,6 +48,7 @@ const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const saveText = document.getElementById("saveText");
 const saveStatus = document.getElementById("saveStatus");
+const verifyButton = document.getElementById("verifyButton");
 
 grandma.label = "Grandmas";
 grandma.countElement = grandmaCount;
@@ -156,6 +157,8 @@ farmButton.addEventListener("click", function(){
 saveButton.addEventListener("click", saveGame);
 loadButton.addEventListener("click", loadGame);
 
+verifyButton.addEventListener("click", verifySave);
+
 function buildSaveData(){
     let producerData = [];
     for(let producer of producers){
@@ -181,6 +184,15 @@ function saveGame(){
     let saveData = buildSaveData();
     let saveString = JSON.stringify(saveData,null,2);
     saveText.value = saveString;
+
+    let checkData = JSON.parse(saveString);
+    let problem = verifySaveData(checkData);
+
+    if(problem === ""){
+        showStatus("Save created and verified: it can be loaded back exactly as-is!", true);
+    }else{
+        showStatus("Save created, but it FAILED verification: " + problem, false);
+    }
 }
 
 function loadGame(){
@@ -189,8 +201,14 @@ function loadGame(){
     try{
         saveData = JSON.parse(saveText.value);
     } catch(error){
-        showStatus("That save could not be read. Check the text and try again.", false);
-        console.log(error);
+        showStatus("Load failed: that is not a valid JSON." + error.message, false);
+        //console.log(error);
+        return;
+    }
+
+    let problem = verifySaveData(saveData);
+    if(problem !== ""){
+        showStatus("Load refused: " + problem, false);
         return;
     }
     
@@ -208,7 +226,8 @@ function loadGame(){
     }
 
     updateDisplay();
-    showStatus("Game loaded.", true);
+    showStatus("Save loaded and verified: " + game.cookies + " cookies, " + 
+        cps() + " automatic clicks per second.", true);
 
 }
 
@@ -289,6 +308,24 @@ function verifySaveData(saveData){
     }
     return "";
 
+}
+
+function verifySave(){
+    let saveData;
+
+    try{
+        saveData = JSON.parse(saveText.value);
+    }catch(error){
+        showStatus("That is not a valid JSON, so it cannot be verified. " + error.message, false);
+        return;
+    }
+
+    let problem = verifySaveData(saveData);
+    if(problem !== ""){
+        showStatus("Save failed verification: " + problem, false);
+    }else{
+        showStatus("Save verified! This save text is safe to load!", true);
+    }
 }
 
 
