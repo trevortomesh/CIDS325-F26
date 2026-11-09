@@ -195,6 +195,52 @@ function saveGame(){
     }
 }
 
+function checkSaveData(saveData){
+    if(typeof saveData !== "object" || saveData === null){
+        throw new Error("The save is not a game save!");
+    }
+
+    if(typeof saveData.cookies != "number"){
+        throw new Error("The save's 'cookies' is missing or is not a number!");
+    }
+
+    if(saveData.cookies < 0){
+        throw new Error("The save's 'cookies' cannot be negative!");
+    }
+
+    if(typeof saveData.cookiesPerClick !== "number" || saveData.cookiesPerClick < 1){
+        throw new Error("The save's 'cookiesPerClick' is missing or is not a number of 1 or more!");
+    }
+
+    if(typeof saveData.upgradeCost !== "number" || saveData.upgradeCost < 1){
+        throw new Error("The saves 'upgradeCost' is missing or not a number 1 or more!");
+    }
+
+    if(Array.isArray(saveData.producers) == false){
+        throw new Error("The save is missing its list of producers!");
+    }
+
+    for(let savedProducer of saveData.producers){
+        
+        if(typeof savedProducer.name !== "string"){
+            throw new Error("A producer in the save is missing its name!");
+        }
+
+        if(typeof savedProducer.count !== "number" || savedProducer.count < 0){
+            throw new Error(savedProducer.name + ": 'count' is missing or is not a nuber 0 or more!");
+        }
+
+        if(typeof savedProducer.cost !== "number" || savedProducer.cost <= 0){
+            throw new Error(savedProducer.name + ": has missing 'cost' or is not a number over 0.");
+        }
+
+
+
+    }
+
+
+}
+
 function loadGame(){
     let saveData; 
     
