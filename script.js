@@ -221,7 +221,7 @@ function checkSaveData(saveData){
     }
 
     for(let savedProducer of saveData.producers){
-        
+
         if(typeof savedProducer.name !== "string"){
             throw new Error("A producer in the save is missing its name!");
         }
@@ -234,7 +234,17 @@ function checkSaveData(saveData){
             throw new Error(savedProducer.name + ": has missing 'cost' or is not a number over 0.");
         }
 
+        let found = false;
 
+        for(let producer of producers){
+            if(producer.name === savedProducer.name){
+                found = true;
+            }
+        }
+        if(found === false){
+            throw new Error( "Unknown producer in the save: '" + savedProducer.name + 
+            "'. This game has no producer with that name.");
+        }
 
     }
 
@@ -243,38 +253,32 @@ function checkSaveData(saveData){
 
 function loadGame(){
     let saveData; 
-    
+        
     try{
+
         saveData = JSON.parse(saveText.value);
-    } catch(error){
-        showStatus("Load failed: that is not a valid JSON." + error.message, false);
-        //console.log(error);
-        return;
-    }
+        checkSaveData(saveData);
 
-    let problem = verifySaveData(saveData);
-    if(problem !== ""){
-        showStatus("Load refused: " + problem, false);
-        return;
-    }
-    
-    game.cookies = saveData.cookies;
-    game.cookiesPerClick = saveData.cookiesPerClick;
-    game.upgradeCost = saveData.upgradeCost;
+        game.cookies = saveData.cookies;
+        game.cookiesPerClick = saveData.cookiesPerClick;
+        game.upgradeCost = saveData.upgradeCost;
 
-    for(let savedProducer of saveData.producers){
-        for(let producer of producers){
-            if(producer.name === savedProducer.name){
-                producer.count = savedProducer.count;
-                producer.cost = savedProducer.cost;
+        for(let savedProducer of saveData.producers){
+            for(let producer of producers){
+                if(producer.name === savedProducer.name){
+                    producer.count = savedProducer.count;
+                    producer.cost = savedProducer.cost;
+                }
             }
         }
+        showStatus("Save Loaded", true);
+
+    } catch(error){
+        showStatus(error, false);
     }
-
-    updateDisplay();
-    showStatus("Save loaded and verified: " + game.cookies + " cookies, " + 
-        cps() + " automatic clicks per second.", true);
-
+    finally{
+        updateDisplay();
+    }
 }
 
 function showStatus(message, isOk){
