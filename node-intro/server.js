@@ -1,6 +1,13 @@
 const http = require("http");
 
+
+let requestCount = 0;
 const server = http.createServer(function(request, response){
+
+    console.log(request.method + " " + request.url);
+    // requestCount++;
+    // console.log("Request #" + requestCount + "for " + request.url);
+    // //console.log(request);
     if(request.url === "/"){
         response.writeHead(200,{"Content-Type": "text/html"});
         response.end("<h1>Home</h1><p>Welcome to our first server!</p>");
@@ -13,7 +20,7 @@ const server = http.createServer(function(request, response){
         response.end(JSON.stringify(player));
     }else{
         response.writeHead(404, {"Content-Type": "text/plain"});
-        response.end("404 - Page Not Found, ya silly goose!");
+        response.end("404 - Ope! Page Not Found, ya silly goose!");
     }
 });
     
