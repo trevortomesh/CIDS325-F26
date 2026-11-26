@@ -1,8 +1,20 @@
 const http = require("http");
 
-
 let requestCount = 0;
 const server = http.createServer(function(request, response){
+
+
+    const url = new URL(request.url, "http://localhost:3000");
+
+    let params = url.searchParams;
+    let isPresent = params.has("q");
+    if(isPresent){
+        for(let [key,value] of url.searchParams){
+            console.log(key + "=" + value);
+        }
+        // let mySearch = params.get("q");
+        // console.log(mySearch);
+    }
 
     console.log(request.method + " " + request.url);
     // requestCount++;
